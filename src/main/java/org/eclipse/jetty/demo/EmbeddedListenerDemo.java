@@ -28,7 +28,10 @@ import org.eclipse.jetty.util.component.LifeCycle;
  * <p>
  * This works for Servlets and Servlet Filters, but not Servlet Listeners.
  * </p>
+ *
+ * @deprecated use {@link EmbeddedEnhancedListenerSCIDemo} techniques instead. (will not work on Jetty 10 and newer)
  */
+@Deprecated(since = "9.4.12", forRemoval = true)
 public class EmbeddedListenerDemo
 {
     public static void main(String[] args) throws Exception
