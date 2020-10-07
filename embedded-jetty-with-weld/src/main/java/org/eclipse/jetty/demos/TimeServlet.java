@@ -5,7 +5,8 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
-import javax.servlet.ServletException;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,11 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings("serial")
 public class TimeServlet extends HttpServlet
 {
+    @Inject
+    public Logger logger;
+
     private static final TimeZone TZ = TimeZone.getDefault();
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {
+        logger.info(String.format("%s:%d Requested Time", req.getRemoteAddr(), req.getRemotePort()));
         Locale locale = req.getLocale();
         Calendar cal = Calendar.getInstance(TZ, locale);
         String dateStr = DateFormat.getDateInstance(DateFormat.DEFAULT, locale).format(cal.getTime());

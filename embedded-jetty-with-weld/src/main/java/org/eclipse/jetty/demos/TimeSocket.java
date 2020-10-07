@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.websocket.CloseReason;
 import javax.websocket.OnClose;
 import javax.websocket.OnOpen;
@@ -32,12 +34,16 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/time/")
 public class TimeSocket implements Runnable
 {
+    @Inject
+    public Logger logger;
+
     private TimeZone timezone;
     private Session session;
 
     @OnOpen
     public void onOpen(Session session)
     {
+        logger.info("onOpen() session:" + session);
         this.session = session;
         this.timezone = TimeZone.getTimeZone("UTC");
         new Thread(this).start();
@@ -46,6 +52,7 @@ public class TimeSocket implements Runnable
     @OnClose
     public void onClose(CloseReason close)
     {
+        logger.info("onClose() close:" + close);
         this.session = null;
     }
 
