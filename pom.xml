@@ -50,6 +50,7 @@
   </dependencies>
 
   <build>
+    <finalName>embedded-jetty-with-weld</finalName>
     <pluginManagement>
       <plugins>
         <plugin>
