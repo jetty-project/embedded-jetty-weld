@@ -1,10 +1,42 @@
 version: 2
 updates:
-  - package-ecosystem: "maven"
-    directory: "/"
-    schedule:
-      interval: "weekly"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+
+  - package-ecosystem: "maven"
+    directory: "/"
+    target-branch: "jetty-9.4.x"
+    schedule:
+      interval: "daily"
+    ignore:
+      # Restrict updates in this branch to jetty in the 11.x.x space
+      - dependency-name: "org.eclipse.jetty:jetty-webapp"
+        versions: [ ">=10.0.0" ]
+      # Never update servlet api
+      - dependency-name: "javax.servlet:javax.servlet-api"
+
+  - package-ecosystem: "maven"
+    directory: "/"
+    target-branch: "jetty-10.0.x"
+    schedule:
+      interval: "daily"
+    ignore:
+      # Restrict updates in this branch to jetty in the 11.x.x space
+      - dependency-name: "org.eclipse.jetty:jetty-webapp"
+        versions: [ "<=10.0.0", ">=11.0.0" ]
+      # Never update servlet api
+      - dependency-name: "jakarta.servlet:jakarta.servlet-api"
+
+  - package-ecosystem: "maven"
+    directory: "/"
+    target-branch: "jetty-11.0.x"
+    schedule:
+      interval: "daily"
+    ignore:
+      # Restrict updates in this branch to jetty in the 11.x.x space
+      - dependency-name: "org.eclipse.jetty:jetty-webapp"
+        versions: [ ">=12.0.0" ]
+      # Never update servlet api
+      - dependency-name: "jakarta.servlet:jakarta.servlet-api"

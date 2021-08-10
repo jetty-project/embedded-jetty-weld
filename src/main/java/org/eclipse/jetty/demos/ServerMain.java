@@ -27,17 +27,14 @@ import org.eclipse.jetty.demos.logging.Logging;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
-import org.eclipse.jetty.util.log.JavaUtilLog;
-import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.resource.Resource;
-import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
+import org.eclipse.jetty.websocket.javax.server.config.JavaxWebSocketServletContainerInitializer;
 
 public class ServerMain
 {
     public static void main(String[] args)
     {
         Logging.config();
-        Log.setLog(new JavaUtilLog());
         try
         {
             new ServerMain().run();
@@ -70,12 +67,12 @@ public class ServerMain
 
         // Enable Weld + CDI
         context.setInitParameter(CdiServletContainerInitializer.CDI_INTEGRATION_ATTRIBUTE, CdiDecoratingListener.MODE);
-        context.addBean(new ServletContextHandler.Initializer(context, new CdiServletContainerInitializer()));
-        context.addBean(new ServletContextHandler.Initializer(context, new org.jboss.weld.environment.servlet.EnhancedListener()));
+        context.addServletContainerInitializer(new CdiServletContainerInitializer());
+        context.addServletContainerInitializer(new org.jboss.weld.environment.servlet.EnhancedListener());
 
         // Add WebSocket endpoints
-        WebSocketServerContainerInitializer.configure(context,
-            (servletContext, wsContainer) -> wsContainer.addEndpoint(TimeSocket.class));
+        JavaxWebSocketServletContainerInitializer.configure(context, (servletContext, wsContainer) ->
+            wsContainer.addEndpoint(TimeSocket.class));
 
         // Add Servlet endpoints
         context.addServlet(TimeServlet.class, "/time/");
