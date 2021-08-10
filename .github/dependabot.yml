@@ -11,11 +11,15 @@ updates:
     schedule:
       interval: "daily"
     ignore:
-      # Restrict updates in this branch to jetty in the 11.x.x space
-      - dependency-name: "org.eclipse.jetty:jetty-webapp"
+      # Restrict updates in this branch to jetty in the 9.4.x space
+      - dependency-name: "org.eclipse.jetty.websocket:javax-websocket-server-impl"
         versions: [ ">=10.0.0" ]
-      # Never update servlet api
-      - dependency-name: "javax.servlet:javax.servlet-api"
+      - dependency-name: "org.eclipse.jetty:jetty-cdi"
+        versions: [ ">=10.0.0" ]
+      - dependency-name: "org.eclipse.jetty:jetty-servlet"
+        versions: [ ">=10.0.0" ]
+      - dependency-name: "org.jboss.weld.servlet:weld-servlet-core"
+        versions: [ ">=4.0.0" ]
 
   - package-ecosystem: "maven"
     directory: "/"
@@ -23,11 +27,15 @@ updates:
     schedule:
       interval: "daily"
     ignore:
-      # Restrict updates in this branch to jetty in the 11.x.x space
-      - dependency-name: "org.eclipse.jetty:jetty-webapp"
+      # Restrict updates in this branch to jetty in the 10.x.x space
+      - dependency-name: "org.eclipse.jetty.websocket:websocket-javax-server"
         versions: [ "<=10.0.0", ">=11.0.0" ]
-      # Never update servlet api
-      - dependency-name: "jakarta.servlet:jakarta.servlet-api"
+      - dependency-name: "org.eclipse.jetty:jetty-cdi"
+        versions: [ "<=10.0.0", ">=11.0.0" ]
+      - dependency-name: "org.eclipse.jetty:jetty-servlet"
+        versions: [ "<=10.0.0", ">=11.0.0" ]
+      - dependency-name: "org.jboss.weld.servlet:weld-servlet-core"
+        versions: [ ">=4.0.0" ]
 
   - package-ecosystem: "maven"
     directory: "/"
@@ -36,7 +44,11 @@ updates:
       interval: "daily"
     ignore:
       # Restrict updates in this branch to jetty in the 11.x.x space
-      - dependency-name: "org.eclipse.jetty:jetty-webapp"
+      - dependency-name: "org.eclipse.jetty.websocket:websocket-jakarta-server"
         versions: [ ">=12.0.0" ]
-      # Never update servlet api
-      - dependency-name: "jakarta.servlet:jakarta.servlet-api"
+      - dependency-name: "org.eclipse.jetty:jetty-cdi"
+        versions: [ ">=12.0.0" ]
+      - dependency-name: "org.eclipse.jetty:jetty-servlet"
+        versions: [ ">=12.0.0" ]
+      - dependency-name: "org.jboss.weld.servlet:weld-servlet-core"
+        versions: [ ">=5.0.0" ]
