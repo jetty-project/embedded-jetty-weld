@@ -33,7 +33,7 @@ jobs:
           key: ${{ matrix.os }}-maven-wrapper-${{ hashFiles('**/.mvn/wrapper/maven-wrapper.properties') }}
 
       - name: Set up JDK
-        uses: actions/setup-java@v2.2.0
+        uses: actions/setup-java@v2.3.0
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
