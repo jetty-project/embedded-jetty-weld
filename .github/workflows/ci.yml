@@ -32,6 +32,4 @@ jobs:
 
       - name: Build with Maven
         run: ./mvnw clean install -e -B -V -fae "-Dmaven.test.failure.ignore=true"
-        env:
-          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
 
