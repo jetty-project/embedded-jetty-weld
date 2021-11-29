@@ -17,14 +17,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up cache for .mvn
-        uses: actions/cache@v2.1.6
-        with:
-          path: .mvn/wrapper
-          key: ${{ matrix.os }}-maven-wrapper-${{ hashFiles('**/.mvn/wrapper/maven-wrapper.properties') }}
-
       - name: Set up JDK
-        uses: actions/setup-java@v2.3.1
+        uses: actions/setup-java@v2.4.0
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
