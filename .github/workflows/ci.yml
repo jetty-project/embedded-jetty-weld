@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up cache for .mvn
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           path: .mvn/wrapper
           key: ${{ matrix.os }}-maven-wrapper-${{ hashFiles('**/.mvn/wrapper/maven-wrapper.properties') }}
