@@ -39,7 +39,7 @@
     <maven.war.plugin.version>3.3.2</maven.war.plugin.version>
     <license.plugin.version>4.1</license.plugin.version>
 
-    <jetty.version>11.0.9</jetty.version>
+    <jetty.version>11.0.10</jetty.version>
     <slf4j.version>2.0.0-alpha7</slf4j.version>
     <weld.version>4.0.3.Final</weld.version>
   </properties>
